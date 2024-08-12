@@ -1,16 +1,21 @@
-const activityTypes = [];
-const activityGroup = [];
-const activityFacilities = [];
+const activityTypes = []; //Holds the activity types selected by user
+const activityGroups = []; //Holds the activity groups selected by user
+const activityFacilities = []; ////Holds the activity facilities selected by user
 
 const filterOption = {
     activityTypes: activityTypes,
     searchKeyword: "",
-    activityGroup: activityGroup,
+    activityGroup: activityGroups,
     activityFacilities: activityFacilities,
+    sorting: "asc"
 };
 
+
+//Getting the data from the JSON file and generate activities HTML data
 applyActivityData(filterOption);
 
+
+//Add-remove items to-from activityTypes array, then match the data with the array
 const types = document.querySelectorAll(".activities__filterType");
 types.forEach((checkBox) => {
     checkBox.addEventListener("click", () =>
@@ -18,6 +23,8 @@ types.forEach((checkBox) => {
     );
 });
 
+
+//Add-remove items to-from activityGroups array, then match the data with the array
 const groups = document.querySelectorAll(".activities__filterGroup");
 groups.forEach((checkBox) => {
     checkBox.addEventListener("click", () =>
@@ -25,21 +32,29 @@ groups.forEach((checkBox) => {
     );
 });
 
-const facilities = document.querySelectorAll(
-    ".activities__facilityIcon input[type='checkbox']"
-);
+
+//Add-remove items to-from activityFacilities array, then match the data with the array
+const facilities = document.querySelectorAll(".activities__facilityIcon input[type='checkbox']");
 facilities.forEach((checkBox) => {
     checkBox.addEventListener("click", () =>
         applyActivityFacilitiesFilter(checkBox.value, checkBox.checked)
     );
 });
 
+
+//Get search input form user, then match the data with the search input
 let timeoutId;
 const searchInput = document.getElementById("search");
 searchInput.addEventListener("input", () => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => applySearch(searchInput.value), 1000);
 });
+
+
+//Sort the data Asc or Desc
+const sorting = document.getElementById("sorting");
+sorting.addEventListener("change", () => sortResult(sorting.value))
+
 
 function applyActivityTypesFilter(type, checked) {
     if (checked) {
@@ -50,23 +65,22 @@ function applyActivityTypesFilter(type, checked) {
             activityTypes.splice(index, 1);
         }
     }
+
     console.log("Selected user activity types: " + activityTypes)
     applyActivityData(filterOption);
 }
 
 function applyActivityGroupFilter(type, checked) {
     if (checked) {
-        activityGroup.push(type);
+        activityGroups.push(type);
     } else {
-        const index = activityGroup.indexOf(type);
+        const index = activityGroups.indexOf(type);
         if (index > -1) {
-            activityGroup.splice(index, 1);
+            activityGroups.splice(index, 1);
         }
     }
-    const activityContainer = document.querySelector(
-        ".activities__container"
-    );
-    activityContainer.innerHTML = "";
+
+    console.log("Selected user activity group: " + activityGroups)
     applyActivityData(filterOption);
 }
 
@@ -79,19 +93,22 @@ function applyActivityFacilitiesFilter(type, checked) {
             activityFacilities.splice(index, 1);
         }
     }
-    const activityContainer = document.querySelector(
-        ".activities__container"
-    );
-    activityContainer.innerHTML = "";
+
+    console.log("Selected user activity facilities: " + activityFacilities);
     applyActivityData(filterOption);
 }
 
 function applySearch(searchKeyword) {
     filterOption.searchKeyword = searchKeyword;
-    const activityContainer = document.querySelector(
-        ".activities__container"
-    );
-    activityContainer.innerHTML = "";
+
+    console.log("New search input: " + searchKeyword);
+    applyActivityData(filterOption);
+}
+
+function sortResult(value) {
+    filterOption.sorting = value;
+
+    console.log("Sorting data " + value)
     applyActivityData(filterOption);
 }
 
@@ -133,13 +150,21 @@ const DOG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
 
 
 function applyActivityData(filterOption) {
-    fetchData("https://raw.githubusercontent.com/GhadaAlali92/Filtering/main/data.json")
+    fetchData("data.json")
         .then((result) => {
             let filteredResult = filterActivities(result, filterOption);
+
+            if(filterOption.sorting === "asc") {
+                filteredResult = filteredResult.sort((a, b) => a.name.localeCompare(b.name))
+            } else {
+                filteredResult = filteredResult.sort((a, b) =>  b.name.localeCompare(a.name))
+            }
+
             renderActivities(filteredResult);
         });
 }
 
+//Combine all filters
 function filterActivities(activities, filterOption) {
     return activities.filter(activity => {
         return (
@@ -170,6 +195,7 @@ function matchFacilities(activity, facilities) {
     return facilities.length === 0 || facilities.every(facility => activity.facilities.includes(facility));
 }
 
+//Render activities based on the JSON data
 function renderActivities(activities) {
     const activityContainer = document.querySelector(".activities__container");
     activityContainer.innerHTML = "";
@@ -213,6 +239,7 @@ function renderActivities(activities) {
     });
 }
 
+//Generate facilities icon based on JSON data
 function setFacilitiesIcons(facilities) {
     let innerHtml = "";
     facilities.forEach((facility) => {
