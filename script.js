@@ -50,6 +50,7 @@ function applyActivityTypesFilter(type, checked) {
             activityTypes.splice(index, 1);
         }
     }
+    console.log("Selected user activity types: " + activityTypes)
     applyActivityData(filterOption);
 }
 
@@ -99,8 +100,6 @@ async function fetchData(endpoint) {
     try {
         const response = await fetch(endpoint);
 
-        console.log(response)
-
         if (!response.ok) {
             throw new Error("Network response was not ok " + response.statusText);
         }
@@ -134,7 +133,7 @@ const DOG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
 
 
 function applyActivityData(filterOption) {
-    fetchData("data.json")
+    fetchData("https://raw.githubusercontent.com/GhadaAlali92/Filtering/main/data.json")
         .then((result) => {
             let filteredResult = filterActivities(result, filterOption);
             renderActivities(filteredResult);
