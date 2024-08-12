@@ -35,7 +35,7 @@
     {
         "id": "event4",
         "name": "Vanderture",
-        "desc": "Tag på cykelferie i Sønderjylland og få en oplevelse for livet. der passer dig .Du kan læse om havd der er inkluderet ved at klikke på de enkelte ophold",
+        "desc": "Tag på cykelferie i Sønderjylland og få en oplevelse for livet. der passer dig. Du kan læse om havd der er inkluderet ved at klikke på de enkelte ophold",
         "img": "images/sea_surfing.png",
         "city": "Sønderborg",
         "start": "05-Jul",
