@@ -34,7 +34,7 @@ groups.forEach((checkBox) => {
 
 
 //Add-remove items to-from activityFacilities array, then match the data with the array
-const facilities = document.querySelectorAll(".activities__facilityIcon input[type='checkbox']");
+const facilities = document.querySelectorAll(".activities__facilityIconWrapper input[type='checkbox']");
 facilities.forEach((checkBox) => {
     checkBox.addEventListener("click", () =>
         applyActivityFacilitiesFilter(checkBox.value, checkBox.checked)
@@ -239,7 +239,7 @@ function renderActivities(activities) {
     });
 }
 
-//Generate facilities icon based on JSON data
+//Generate facilities icons based on JSON data
 function setFacilitiesIcons(facilities) {
     let innerHtml = "";
     facilities.forEach((facility) => {

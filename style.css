@@ -100,15 +100,22 @@ main {
 }
 
 .activities__facilityIcon:active {
-    background-color: var(--colors-green);
+    background: var(--colors-green);
     transform: scale(0.95);
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 25);
+    box-shadow: inset 0 4px 4px rgba(0, 0, 0, 25);
 }
 
 .activities__facilityIcon--sm {
+    background: var(--colors-green);
     width: 12px;
     height: 12px;
     border-radius: 4px;
+}
+
+.activities__facilityIcon--sm:active {
+    background: none;
+    transform: none;
+    box-shadow: none;
 }
 
 .activities__main {
@@ -171,6 +178,17 @@ main {
     gap: var(--spacing-8);
 }
 
+.activities__filterFacilitiesIcons input[type="checkbox"] {
+    display: none;
+}
+
+
+.activities__facilityIconWrapper input[type="checkbox"]:checked + .activities__facilityIcon {
+    background-color: #4CAF50;
+}
+
+
+
 @container body (max-width: 480px) {
     main,
     .activity,
@@ -194,7 +212,5 @@ main {
     .activities__toolbar {
         gap: var(--spacing-32);
     }
-
-
 
 }
