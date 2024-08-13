@@ -99,6 +99,15 @@ main {
     box-shadow 0.1s ease;
 }
 
+.activities__filterFacilitiesIcons input[type="checkbox"] {
+    display: none;
+}
+
+.activities__facilityIconWrapper input[type="checkbox"]:checked + .activities__facilityIcon {
+    background-color: var(--colors-green);
+}
+
+
 .activities__facilityIcon:active {
     background: var(--colors-green);
     transform: scale(0.95);
@@ -163,7 +172,7 @@ main {
     display: flex;
     padding: var(--spacing-8);
     gap: var(--spacing-16);
-    background-color: var(--color-2);
+    background-color: var(--colors-white);
     border-radius: var(--border-radius-16);
     align-items: center;
     font-size: var(--typeface-size-xs);
@@ -178,14 +187,6 @@ main {
     gap: var(--spacing-8);
 }
 
-.activities__filterFacilitiesIcons input[type="checkbox"] {
-    display: none;
-}
-
-
-.activities__facilityIconWrapper input[type="checkbox"]:checked + .activities__facilityIcon {
-    background-color: #4CAF50;
-}
 
 
 
