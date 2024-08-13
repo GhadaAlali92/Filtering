@@ -50,5 +50,18 @@
         "location":"https://maps.app.goo.gl/LLEbGZPaoEwSbUtP6",
         "type": "surfing",
         "group": "other"
-    } 
+    },
+     {
+        "id": "event5",
+        "name": "Cykelferie1",
+        "desc": "Tag på cykelferie i Sønderjylland og få en oplevelse for livet. der passer dig .Du kan læse om havd der er inkluderet ved at klikke på de enkelte ophold",
+        "img": "images/cycling.png",
+        "city": "Sønderborg",
+        "start": "05-Jul",
+        "end": "24-Sep",
+        "facilities": ["dog", "wc", "diaper", "stroller","parking"],
+        "location":"https://maps.app.goo.gl/LLEbGZPaoEwSbUtP6",
+        "type": "cycling",
+        "group": "family"
+    }
 ]
