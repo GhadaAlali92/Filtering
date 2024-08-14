@@ -195,17 +195,12 @@ main {
     -moz-appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid var(--border-checkbox---secondary);
-    border-radius: 50%;
+    border: 1px solid var(--border-checkbox---secondary);
+    border-radius: 30%;
     outline: none;
     cursor: pointer;
     position: relative;
     background: var(--colors-light-grey);
-}
-
-.activities__filterItem input[type="checkbox"]:checked {
-    background-color: var(--colors-green);
-    border-color: var(--colors-green);
 }
 
 .activities__filterItem input[type="checkbox"]:checked::before {
@@ -216,8 +211,8 @@ main {
     transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
-    border-radius: 50%;
-    background-color: var(--border-checkbox---secondary);
+    border-radius: 30%;
+    background-color: var(--colors-green);
     border: 2px var(--colors-light-grey) solid;
 }
 
