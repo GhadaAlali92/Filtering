@@ -237,7 +237,6 @@ input[type=text]{
 input[type=text]:focus{
     outline:none;
     border:var(--colors-green) 2px solid;
-    color:var(--colors-green);
 }
 
 .activities__toolbarSort {
