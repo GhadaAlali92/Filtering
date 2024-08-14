@@ -278,3 +278,16 @@ function setFacilitiesIcons(facilities) {
     });
     return innerHtml;
 }
+
+
+const checkBoxes = document.querySelectorAll(".activities__filterItem input[type=checkbox]");
+checkBoxes.forEach(box => {
+   box.addEventListener("click", () => {
+       const container = box.closest("section");
+       if(box.checked) {
+           container.classList.add("activities__filterItem--hasBorder");
+       } else {
+           container.classList.remove("activities__filterItem--hasBorder");
+       }
+   })
+})

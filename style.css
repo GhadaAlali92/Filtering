@@ -28,7 +28,7 @@ body {
 
 main {
     display: flex;
-    gap: var(--spacing-12);
+    gap: var(--spacing-24);
 }
 
 .activities__filter {
@@ -36,8 +36,8 @@ main {
     max-width: 25%;
     padding: 32px;
     flex-direction: column;
-    background-color: var(--colors-background-lightblue);
     gap: var(--spacing-24);
+    box-shadow:  3px 3px 10px 1px rgba(0, 0, 0, .2);
 }
 
 .activity__links {
@@ -74,6 +74,8 @@ main {
     display: flex;
     gap: 8px;
     align-items: center;
+    width: fit-content;
+    padding: var(--spacing-8);
 }
 
 .activity__desc,
@@ -150,9 +152,9 @@ main {
 .activity__details {
     display: flex;
     flex-direction: column;
-    background-color: var(--colors-background-lightblue);
     padding: var(--spacing-24);
     justify-content: center;
+    box-shadow:  3px 3px 10px 1px rgba(0, 0, 0, .2);
 }
 
 .activity__name {
@@ -172,11 +174,11 @@ main {
     display: flex;
     padding: var(--spacing-8);
     gap: var(--spacing-16);
-    background-color: var(--colors-white);
     border-radius: var(--border-radius-16);
     align-items: center;
     font-size: var(--typeface-size-xs);
     width: fit-content;
+    box-shadow:  3px 3px 10px 1px rgba(0, 0, 0, .2);
 }
 
 .activity__location,
@@ -187,8 +189,72 @@ main {
     gap: var(--spacing-8);
 }
 
+.activities__filterItem input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-checkbox---secondary);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background: var(--colors-light-grey);
+}
 
+.activities__filterItem input[type="checkbox"]:checked {
+    background-color: var(--colors-green);
+    border-color: var(--colors-green);
+}
 
+.activities__filterItem input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border-checkbox---secondary);
+    border: 2px var(--colors-light-grey) solid;
+}
+
+.activities__filterItem--hasBorder {
+    border: 2px solid var(--colors-green);
+    border-radius: var(--border-radius-16);
+}
+
+input[type=text]{
+    width:100%;
+    border-radius: var(--border-radius-8);
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    padding:var(--spacing-8)
+}
+
+input[type=text]:focus{
+    outline:none;
+    border:var(--colors-green) 2px solid;
+    color:var(--colors-green);
+}
+
+.activities__toolbarSort {
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+}
+
+select {
+    width: 60%;
+    padding: var(--spacing-8);
+    border: 2px solid rgba(0,0,0,.3);
+    border-radius: var(--border-radius-8);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
 @container body (max-width: 480px) {
     main,
